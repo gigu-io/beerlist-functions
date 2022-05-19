@@ -1,2 +1,7 @@
-# beerlist-functions
-Firebase Cloud Functions for beerlist
+# Firebase Cloud Functions
+
+Manually deployed via firebase cli:
+```bash
+firebase login
+firebase deploy --only functions
+```
