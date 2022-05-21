@@ -9,13 +9,17 @@ import * as cors from "cors";
 let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "", // add credentials locally
-        pass: "", // add credentials locally
+        user: process.env.SMTP_USER, // add credentials locally
+        pass: process.env.SMTP_PASSWORD, // add credentials locally
     },
 });
 
 export const sendMail = functions.https.onRequest((req, res) => {
-    cors({ origin: true })(req, res, () => {
+    const corsOptions = {
+        origin: 'https://beer.gigu.io'
+    };
+
+    cors(corsOptions)(req, res, () => {
         const { from, to, subject, html } = req.body;
 
         const mailOptions: any = {
